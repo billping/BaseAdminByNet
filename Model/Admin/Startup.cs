@@ -1,7 +1,11 @@
-﻿using Microsoft.Owin;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Admin.Startup))]
+[assembly: OwinStartup(typeof(Admin.Startup))]
+
 namespace Admin
 {
     public partial class Startup
