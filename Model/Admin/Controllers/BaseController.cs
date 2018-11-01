@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Admin.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -8,8 +9,12 @@ using Z.ViewModel;
 
 namespace Admin.Controllers
 {
-    public class BasicController : ApiController
+    public class BaseController : ApiController
     {
+        /// <summary>
+        /// 成功
+        /// </summary>
+        /// <returns></returns>
         public ResponseModel Success()
         {
             return new ResponseModel()
@@ -18,6 +23,7 @@ namespace Admin.Controllers
                 Message = "ok"
             };
         }
+
         /// <summary>
         /// 成功
         /// </summary>
@@ -60,6 +66,14 @@ namespace Admin.Controllers
                 Code = ResponseCode.Error,
                 Message = message,
             };
+        }
+        /// <summary>
+        /// 基本授权控制器基类
+        /// </summary>
+        [BasicAuthorize]
+        public class BasicAuthorizeController : BaseController
+        {
+
         }
     }
 }

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+
+    
+</head>
+<body>
+    <input type="button" value="login"  id="login"/>
+    <input type="button" value="test" id="test" />
+    <input type="text" style="width:100%"  id="token"/>
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#login').click(function () {
+                var data = {
+                    UserName: "admin",
+                    Pwd: "admin"
+                };
+                $.ajax({
+                    url: 'http://localhost:53943/api/login',
+                    method: "post",
+        
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+
+                    success: function (d) {
+                        $('#token').val(d.Data.Token)
+                        console.log(d);
+                    }
+                });
+            })
+            
+
+            $('#test').click(function () {
+            
+                $.ajax({
+                    url: 'http://localhost:53943/api/test',
+                    method: "get",
+                    headers: {
+                        Accept: "application/json; charset=utf-8",
+                        Token: $('#token').val()
+                    },
+                    contentType: "application/json",
+                    dataType: "json",
+                    
+
+                    success: function (d) {
+                        console.log(d);
+                    }
+                });
+            })
+        })
+
+ 
+    </script>
+</body>
+</html>
